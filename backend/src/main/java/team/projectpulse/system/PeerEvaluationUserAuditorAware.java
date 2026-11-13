@@ -22,7 +22,9 @@ public class PeerEvaluationUserAuditorAware implements AuditorAware<PeerEvaluati
     @Override
     public Optional<PeerEvaluationUser> getCurrentAuditor() {
         Integer userId = this.userUtils.getUserId();
-        if (userId == null) return Optional.empty();
+        if (userId == null) {
+            return Optional.empty();
+        }
         return Optional.of(this.userRepository.getReferenceById(userId));
     }
 

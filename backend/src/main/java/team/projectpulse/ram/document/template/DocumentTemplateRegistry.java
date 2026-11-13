@@ -45,7 +45,9 @@ public class DocumentTemplateRegistry {
                 processTemplateFile(resource);
             }
 
-            log.info("Successfully loaded {} document template(s)", templates.size());
+            if (log.isInfoEnabled()) {
+                log.info("Successfully loaded {} document template(s)", templates.size());
+            }
             validateTemplates();
 
         } catch (IOException e) {

@@ -17,7 +17,9 @@ public class CommentToCommentDtoConverter implements Converter<Comment, CommentD
 
     @Override
     public CommentDto convert(Comment source) {
-        if (source == null) return null;
+        if (source == null) {
+            return null;
+        }
         return new CommentDto(
                 source.getId(),
                 source.getAuthor() != null ? peerEvaluationUserToPeerEvaluationUserDtoConverter.convert(source.getAuthor()) : null,

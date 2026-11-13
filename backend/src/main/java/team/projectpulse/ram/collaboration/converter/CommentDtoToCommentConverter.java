@@ -9,7 +9,9 @@ import team.projectpulse.ram.collaboration.dto.CommentDto;
 public class CommentDtoToCommentConverter implements Converter<CommentDto, Comment> {
     @Override
     public Comment convert(CommentDto source) {
-        if (source == null) return null;
+        if (source == null) {
+            return null;
+        }
         Comment c = new Comment();
         c.setContent(source.content());
         return c;

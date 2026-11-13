@@ -13,5 +13,14 @@
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
     <description>PMD quickstart, with Project Pulse's decisions.</description>
     <rule ref="rulesets/java/quickstart.xml">
+        <!-- D2: Explicit no-arg constructors support JPA and bean/response binding in Pulse.
+             Removing constructors or restricting visibility mechanically can break framework
+             construction; redundant public declarations are not a project correctness rule. -->
+        <exclude name="UncommentedEmptyConstructor"/>
+        <exclude name="UnnecessaryConstructor"/>
+        <!-- D3: Enforce braces, including short lock/null/authorization guards, so later
+             additions cannot silently fall outside the branch. All 30 old sites fixed. -->
+        <!-- D4: Enforce log guards: parameterized logging delays formatting, but Java still
+             evaluates getters and size calculations before the logger checks its level. -->
     </rule>
 </ruleset>

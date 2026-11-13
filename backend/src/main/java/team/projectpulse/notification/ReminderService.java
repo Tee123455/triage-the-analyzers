@@ -69,7 +69,9 @@ public class ReminderService {
                 this.emailService.sendReminderEmail(student.getEmail(), SUBJECT, body(section, student, entry.getValue(), week));
                 sent++;
             } catch (RuntimeException e) {
-                LOGGER.error("Could not send a submission reminder to {} in section {}", student.getEmail(), section.getSectionName(), e);
+                if (LOGGER.isErrorEnabled()) {
+                    LOGGER.error("Could not send a submission reminder to {} in section {}", student.getEmail(), section.getSectionName(), e);
+                }
                 failed.add(student);
             }
         }
