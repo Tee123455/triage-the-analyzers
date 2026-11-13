@@ -9,6 +9,7 @@ import team.projectpulse.student.dto.StudentDto;
 import team.projectpulse.user.MyUserPrincipal;
 import team.projectpulse.user.PeerEvaluationUser;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -31,12 +32,14 @@ public class AuthService {
 
     public Map<String, Object> createLoginInfo(Authentication authentication) {
         // Create user info.
-        MyUserPrincipal principal = (MyUserPrincipal) authentication.getPrincipal();
+        if (!(authentication.getPrincipal() instanceof MyUserPrincipal principal)) {
+            throw new BadCredentialsException("Login requires a Project Pulse user principal");
+        }
         PeerEvaluationUser peerEvaluationUser = principal.getPeerEvaluationUser();
 
         Map<String, Object> loginResultMap = new HashMap<>();
 
-        if (peerEvaluationUser.getRoles().equals("student")) {
+        if ("student".equals(peerEvaluationUser.getRoles())) {
             StudentDto studentDto = this.studentToStudentDtoConverter.convert((Student) peerEvaluationUser);
             // Create a JWT.
             String token = this.jwtProvider.createToken(authentication);

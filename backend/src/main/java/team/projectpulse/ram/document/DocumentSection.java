@@ -98,13 +98,17 @@ public class DocumentSection {
     }
 
     public void addCommentThread(CommentThread thread) {
-        if (thread == null) return;
+        if (thread == null) {
+            return;
+        }
         this.commentThreads.add(thread);
         thread.setDocumentSection(this);
     }
 
     public void removeCommentThread(CommentThread thread) {
-        if (thread == null) return;
+        if (thread == null) {
+            return;
+        }
         this.commentThreads.remove(thread);
         if (thread.getDocumentSection() == this) {
             thread.setDocumentSection(null);

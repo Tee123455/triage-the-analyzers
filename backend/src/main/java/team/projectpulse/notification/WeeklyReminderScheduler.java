@@ -52,7 +52,9 @@ public class WeeklyReminderScheduler {
 
     @Scheduled(cron = "${app.reminders.cron}", zone = "${app.timezone}")
     public void sendWeeklyReminders() {
-        if (!this.enabled) return; // Reminders are disabled
+        if (!this.enabled) { // Reminders are disabled
+            return;
+        }
 
         DayOfWeek today = LocalDate.now(this.clock).getDayOfWeek();
         String week = WeekKeys.previousWeek(this.clock);
@@ -74,11 +76,15 @@ public class WeeklyReminderScheduler {
                 List<SubmittableItem> itemsDueToday = Arrays.stream(SubmittableItem.values())
                         .filter(item -> today.equals(item.dueDay(section)))
                         .toList();
-                if (itemsDueToday.isEmpty()) continue; // Nothing due today for this section
+                if (itemsDueToday.isEmpty()) { // Nothing due today for this section
+                    continue;
+                }
 
                 Map<Student, List<SubmittableItem>> owedItems = this.submissionStatusService.findOwedItems(section.getSectionId(), itemsDueToday, week);
                 ReminderService.ReminderResult result = this.reminderService.remind(section, owedItems, week);
-                LOGGER.info("Sent {} of {} weekly reminders for section {}", result.sent(), owedItems.size(), sectionName);
+                if (LOGGER.isInfoEnabled()) {
+                    LOGGER.info("Sent {} of {} weekly reminders for section {}", result.sent(), owedItems.size(), sectionName);
+                }
             } catch (RuntimeException e) {
                 LOGGER.error("Could not send the weekly reminders for section {}", sectionName, e);
             }

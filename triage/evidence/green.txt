@@ -1,0 +1,7 @@
+Actual Maven output excerpts; Java 21.
+Command: sh ./mvnw -B -ntp test -Dtest=PrincipalValidationTest
+
+[INFO] Running team.projectpulse.security.PrincipalValidationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.709 s -- in team.projectpulse.security.PrincipalValidationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS

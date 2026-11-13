@@ -19,7 +19,9 @@ public class CommentThreadToCommentThreadDtoConverter implements Converter<Comme
 
     @Override
     public CommentThreadDto convert(CommentThread source) {
-        if (source == null) return null;
+        if (source == null) {
+            return null;
+        }
         return new CommentThreadDto(
                 source.getId(),
                 source.getStatus(),

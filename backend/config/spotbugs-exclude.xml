@@ -7,4 +7,9 @@
 
      Unlike the baseline, this file may grow, but every entry is a reviewed decision. -->
 <FindBugsFilter>
+  <!-- D1: Pulse shares managed JPA associations/collections, Spring-injected collaborators,
+       and mutable DTO/template data. These APIs do not promise immutable snapshots.
+       Defensive copying would break managed identity or bean lifecycle semantics for entities
+       and services; DTO ownership remains a code-review concern at trust boundaries. -->
+  <Match><Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2"/></Match>
 </FindBugsFilter>

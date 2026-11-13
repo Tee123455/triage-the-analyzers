@@ -1,6 +1,5 @@
 package team.projectpulse.user;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import team.projectpulse.system.Result;
 import team.projectpulse.system.StatusCode;
 import team.projectpulse.user.resetpassword.ResetPasswordService;
