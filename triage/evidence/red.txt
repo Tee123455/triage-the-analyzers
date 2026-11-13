@@ -1,0 +1,27 @@
+Actual Maven output excerpts; Java 21.
+Command: sh ./mvnw -B -ntp test -Dtest=PrincipalValidationTest
+
+[INFO] Running team.projectpulse.security.PrincipalValidationTest
+[ERROR] Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.664 s <<< FAILURE! -- in team.projectpulse.security.PrincipalValidationTest
+Expecting actual throwable to be an instance of:
+  org.springframework.security.authentication.BadCredentialsException
+but was:
+  java.lang.NullPointerException: Cannot invoke "team.projectpulse.user.MyUserPrincipal.getPeerEvaluationUser()" because "principal" is null
+	at team.projectpulse.security.AuthService.createLoginInfo(AuthService.java:35)
+Expecting actual throwable to be an instance of:
+  org.springframework.security.authentication.BadCredentialsException
+but was:
+  java.lang.NullPointerException: Cannot invoke "team.projectpulse.user.MyUserPrincipal.getPeerEvaluationUser()" because the return value of "org.springframework.security.core.Authentication.getPrincipal()" is null
+	at team.projectpulse.security.JwtProvider.createToken(JwtProvider.java:38)
+Expecting actual throwable to be an instance of:
+  org.springframework.security.authentication.BadCredentialsException
+but was:
+  java.lang.NullPointerException: Cannot invoke "team.projectpulse.user.MyUserPrincipal.getPeerEvaluationUser()" because "principal" is null
+	at team.projectpulse.security.AuthService.createLoginInfo(AuthService.java:35)
+Expecting actual throwable to be an instance of:
+  org.springframework.security.authentication.BadCredentialsException
+but was:
+  java.lang.NullPointerException: Cannot invoke "team.projectpulse.user.MyUserPrincipal.getPeerEvaluationUser()" because the return value of "org.springframework.security.core.Authentication.getPrincipal()" is null
+	at team.projectpulse.security.JwtProvider.createToken(JwtProvider.java:38)
+[ERROR] Tests run: 2, Failures: 2, Errors: 0, Skipped: 0
+[INFO] BUILD FAILURE
